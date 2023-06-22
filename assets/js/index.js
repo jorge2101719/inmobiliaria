@@ -54,10 +54,28 @@ let boton = document.querySelector('button');
 let cuartos = document.querySelector('#cuartos');
 let desde = document.querySelector('#desde');
 let hasta = document.querySelector('#hasta');
+let error = document.querySelector('#error');
+let total = document.querySelector('#total');
+let propiedad = document.querySelector('#propiedad');
 
 boton.addEventListener('click', function() {
   console.log('se hizo click en Buscar; estamos dentro de la función');
   console.log('cuartos ' + cuartos.value);
   console.log('desde ' + desde.value);
   console.log('hasta ' + hasta.value);
+  console.log('total ' + total.textContent);
+
+  if (Number(desde.value) < Number(hasta.value)) {
+    console.log('todo bien');
+    error.innerHTML = '';
+    error.style.backgroundColor = '';
+  } else {
+    error.innerHTML = `El valor \'desde\' debe ser menor que \'hasta\'. Por favor, modifiquelos`;
+    error.style.backgroundColor= 'red';
+    error.style.marginTop = '20%';
+    error.style.padding = '2%';
+    error.style.borderRadius = '10px';
+  }
+
+
 });
