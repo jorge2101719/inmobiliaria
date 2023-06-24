@@ -58,40 +58,37 @@ let errorCuartos = document.querySelector('#errorCuartos');
 let errorMetros = document.querySelector('#errorMetros');
 let total = document.querySelector('#total');
 let propiedades = document.querySelector('.propiedades');
+let contador = 0;
+let html = ''
 
 boton.addEventListener('click', function() {
-  console.log('se hizo click en Buscar; estamos dentro de la función');
-  console.log('cuartos ' + cuartos.value);
-  console.log('desde ' + desde.value);
-  console.log('hasta ' + hasta.value);
-  console.log('total ' + total.textContent);
-
   for (let dato of propiedadesJSON) {
-    if (isNaN(Number(cuartos.value))) {
-      errorCuartos.innerHTML = `El valor del cuarto debe ser de al menos 1`;
-    } else if (isNaN(desde.value)) {
-      errorMetros.innerHTML = `el valor desde es incorrecto`;
-    } else if (isNaN(hasta.value)) {
-      errorMetros.innerHTML = `el valor hasta es incorrecto`;
-    } else if (Number(desde.value) < Number(hasta.value)) {
-      console.log('todo bien');
+    if (cuartos.value == '' || Number(cuartos.value) < 1) {
+      errorCuartos.innerHTML = `El número de cuartos ha de ser al menos 1`;
+    } else
+    if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
+      // html = '';
       errorMetros.innerHTML = '';
-      console.log(dato.name);
-      console.log(dato.rooms);
-      console.log(dato.m);
-      propiedades.innerHTML += `
-      <div class="img" style="background-image: ${dato.src}"></div>
-      <section>
-          <h5>${dato.name}</h5>
-          <div class="d-flex justify-content-between">
-              <p>Cuartos: ${dato.rooms}</p>
-              <p>Metros: ${dato.m}</p>
-          </div>
-          <p class="my-3">Mansión gigante</p>
-          <button class="btn btn-info ">Ver más</button>
-      </section>
-      `
+      errorCuartos.innerHTML = `<img style="width: 20%">dato.src</img>`;
+      let imagen = `${dato.src}`;
+      html += `
+      <div class="propiedad">
+        <div class="img" style="background-image: ${imagen}"></div>
+        <section>
+            <h5>${dato.name}</h5>
+            <div class="d-flex justify-content-between">
+                <p>Cuartos: ${dato.rooms}</p>
+                <p>Metros: ${dato.m}</p>
+            </div>
+            <p class="my-3">Mansión gigante</p>
+            <button class="btn btn-info ">Ver más</button>
+        </section>
+      </div>
+      `;
+      contador++;
     }
+    total.innerHTML = contador;
+    propiedades.innerHTML = html;
   }
 
 
