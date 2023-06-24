@@ -54,7 +54,8 @@ let boton = document.querySelector('button');
 let cuartos = document.querySelector('#cuartos');
 let desde = document.querySelector('#desde');
 let hasta = document.querySelector('#hasta');
-let error = document.querySelector('#error');
+let errorCuartos = document.querySelector('#errorCuartos');
+let errorMetros = document.querySelector('#errorMetros');
 let total = document.querySelector('#total');
 let propiedad = document.querySelector('#propiedad');
 
