@@ -57,7 +57,7 @@ let hasta = document.querySelector('#hasta');
 let errorCuartos = document.querySelector('#errorCuartos');
 let errorMetros = document.querySelector('#errorMetros');
 let total = document.querySelector('#total');
-let propiedad = document.querySelector('#propiedad');
+let propiedades = document.querySelector('.propiedades');
 
 boton.addEventListener('click', function() {
   console.log('se hizo click en Buscar; estamos dentro de la función');
@@ -66,7 +66,36 @@ boton.addEventListener('click', function() {
   console.log('hasta ' + hasta.value);
   console.log('total ' + total.textContent);
 
-  if (Number(desde.value) < Number(hasta.value)) {
+  for (let dato of propiedadesJSON) {
+    if (isNaN(Number(cuartos.value))) {
+      errorCuartos.innerHTML = `El valor del cuarto debe ser de al menos 1`;
+    } else if (isNaN(desde.value)) {
+      errorMetros.innerHTML = `el valor desde es incorrecto`;
+    } else if (isNaN(hasta.value)) {
+      errorMetros.innerHTML = `el valor hasta es incorrecto`;
+    } else if (Number(desde.value) < Number(hasta.value)) {
+      console.log('todo bien');
+      errorMetros.innerHTML = '';
+      console.log(dato.name);
+      console.log(dato.rooms);
+      console.log(dato.m);
+      propiedades.innerHTML += `
+      <div class="img" style="background-image: ${dato.src}"></div>
+      <section>
+          <h5>${dato.name}</h5>
+          <div class="d-flex justify-content-between">
+              <p>Cuartos: ${dato.rooms}</p>
+              <p>Metros: ${dato.m}</p>
+          </div>
+          <p class="my-3">Mansión gigante</p>
+          <button class="btn btn-info ">Ver más</button>
+      </section>
+      `
+    }
+  }
+
+
+/*  if (Number(desde.value) < Number(hasta.value)) {
     console.log('todo bien');
     error.innerHTML = '';
     error.style.backgroundColor = '';
@@ -76,7 +105,6 @@ boton.addEventListener('click', function() {
     error.style.marginTop = '20%';
     error.style.padding = '2%';
     error.style.borderRadius = '10px';
-  }
-
+  }*/
 
 });
