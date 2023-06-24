@@ -62,15 +62,28 @@ let contador = 0;
 let html = ''
 
 boton.addEventListener('click', function() {
+  html = '';
+  contador = 0;
   for (let dato of propiedadesJSON) {
     if (cuartos.value == '' || Number(cuartos.value) < 1) {
       errorCuartos.innerHTML = `El número de cuartos ha de ser al menos 1`;
+      errorCuartos.style.backgroundColor = 'red';
+      errorCuartos.style.marginTop = '10%';
+      errorCuartos.style.padding = '2%';
+      errorCuartos.style.borderRadius = '10px';
+    } else if (Number(desde.value) >= Number(hasta.value)) {
+      errorMetros.innerHTML = "La longitud no puede ser menor que la del inicio";
+      errorMetros.style.backgroundColor = 'red';
+      errorMetros.style.marginTop = '10%';
+      errorMetros.style.padding = '2%';
+      errorMetros.style.borderRadius = '10px';
     } else
     if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
-      // html = '';
+      errorCuartos.style.backgroundColor = '';
+      errorMetros.style.backgroundColor = '';
       errorMetros.innerHTML = '';
-      errorCuartos.innerHTML = `<img style="width: 20%">dato.src</img>`;
-      let imagen = `${dato.src}`;
+      errorCuartos.innerHTML = ''
+      let imagen = dato.src;
       html += `
       <div class="propiedad">
         <div class="img" style="background-image: ${imagen}"></div>
