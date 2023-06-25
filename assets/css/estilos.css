@@ -52,3 +52,11 @@ nav div{
 .propiedad section p{
     margin: 0px
 }
+
+/* Mis modificaciones */
+
+.img img {
+    width: 13rem;
+    height: 8rem;
+    object-fit: cover;
+}

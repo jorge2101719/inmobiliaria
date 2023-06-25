@@ -2,6 +2,7 @@ const propiedadesJSON = [
     {
       name: "Casa de campo",
       description: "Un lugar ideal para descansar de la ciudad",
+      // src: "../assets/img/CasaDeCampo.jpg",
       src:
         "https://www.construyehogar.com/wp-content/uploads/2020/02/Dise%C3%B1o-casa-en-ladera.jpg",
       rooms: 2,
@@ -58,8 +59,9 @@ let errorCuartos = document.querySelector('#errorCuartos');
 let errorMetros = document.querySelector('#errorMetros');
 let total = document.querySelector('#total');
 let propiedades = document.querySelector('.propiedades');
+// let imagen = document.querySelector('.img');
 let contador = 0;
-let html = ''
+let html = '';
 
 boton.addEventListener('click', function() {
   html = '';
@@ -82,11 +84,14 @@ boton.addEventListener('click', function() {
       errorCuartos.style.backgroundColor = '';
       errorMetros.style.backgroundColor = '';
       errorMetros.innerHTML = '';
-      errorCuartos.innerHTML = ''
-      let imagen = dato.src;
+      errorCuartos.innerHTML = '';
+      // let imagen = document.querySelector('.img');
+      // imagen.innerHTML = 'algo';
+      // let imagen = dato.src;
+      // <div class="img" style="background-image: ${dato.src}"><img style="width: 13rem" src="${dato.src}"></div>
       html += `
       <div class="propiedad">
-        <div class="img" style="background-image: ${imagen}"></div>
+        <div class="img"><img src="${dato.src}"></div>
         <section>
             <h5>${dato.name}</h5>
             <div class="d-flex justify-content-between">
@@ -94,7 +99,7 @@ boton.addEventListener('click', function() {
                 <p>Metros: ${dato.m}</p>
             </div>
             <p class="my-3">Mansión gigante</p>
-            <button class="btn btn-info ">Ver más</button>
+            <button class="btn btn-info">Ver más</button>
         </section>
       </div>
       `;
