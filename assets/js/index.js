@@ -65,6 +65,8 @@ let contador = 0;
 // y que luego se traspasará al DOM
 let html = '';
 
+// se usa un Oídor para rescatar el evento Click y se define una función anónima
+// que contiene las instrucciones a realizar
 boton.addEventListener('click', function() {
   html = '';
   contador = 0;
