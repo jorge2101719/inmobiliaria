@@ -57,7 +57,6 @@ let desde = document.querySelector('#desde');
 let hasta = document.querySelector('#hasta');
 let errorCuartos = document.querySelector('#errorCuartos');
 let errorMetros = document.querySelector('#errorMetros');
-let errorBusqueda = document.querySelector('#errorBusqueda');
 let total = document.querySelector('#total');
 let propiedades = document.querySelector('.propiedades');
 // se declara un contador para el total
@@ -70,7 +69,6 @@ let html = '';
 // que contiene las instrucciones a realizar
 boton.addEventListener('click', function() {
   html = '';
-  contador = 0;
   for (let dato of propiedadesJSON) {
     // comienza examinando condiciones erradas
     if (cuartos.value == '') {
@@ -90,6 +88,7 @@ boton.addEventListener('click', function() {
     } else
     // se evalúa si el primer valor del metraje (desde) es mayor o igual que el segundo (hasta)
     if (Number(desde.value) >= Number(hasta.value)) {
+      limpiarErrorCuartos();
       errorMetros.innerHTML = "El primer valor de METROS CUADRADOS, debe ser menor que el segundo";
       estiloMetrosError();
     } else
@@ -115,12 +114,12 @@ boton.addEventListener('click', function() {
       </div>
       `;
       contador++;
-    } else {
-      errorBusqueda.innerHTML = 'No hay datos que coincidan con la información proporcionada'
     }
     total.innerHTML = contador;
     propiedades.innerHTML = html;
   }
+  // al salir del ciclo for, volvemos el contador a 0, para que no acumule los Click dados.
+  contador = 0;
 });
 
 // se declaran las funciones que limpian mensajes de error
