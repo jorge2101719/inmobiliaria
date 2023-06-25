@@ -72,47 +72,39 @@ boton.addEventListener('click', function() {
   contador = 0;
   for (let dato of propiedadesJSON) {
     // comienza examinando condiciones erradas
-    if (cuartos.value == '' || Number(cuartos.value) < 1) {
-      errorCuartos.innerHTML = `El número de cuartos ha de ser al menos 1`;
-      errorCuartos.style.backgroundColor = 'red';
-      errorCuartos.style.marginTop = '10%';
-      errorCuartos.style.padding = '2%';
-      errorCuartos.style.borderRadius = '10px';
+    if (cuartos.value == '') {
+      estiloCuartosError();
     } else if (cuartos.value != '' && desde.value == '' && hasta.value == '') {
-      errorCuartos.innerHTML = '';
-      errorCuartos.style.backgroundColor = '';
+      limpiarErrorCuartos();
       errorMetros.innerHTML = 'Por favor, indique desde y hasta cuantos metros desea hacer la búsqueda';
-      errorMetros.style.backgroundColor = 'red';
-      errorMetros.style.borderRadius = '10px';
-      errorMetros.style.padding = '2%';
+      estiloMetrosError();
+    } else if (cuartos.value == '' &&  desde.value == '') {
+      estiloCuartosError();
+      desde.innerHTML = 'Por favor, indique desde cuantos metros desea buscar';
+      estiloMetrosError();
+    } else if (cuartos.value == '' && hasta.value == '') {
+      estiloCuartosError();
+      hasta.innerHTML = 'Por favor, indique hasta cuantos metros desea buscar';
+      estiloMetrosError();
     } else if (desde.value == '' && cuartos.value != '') {
+      limpiarErrorCuartos();
       errorMetros.innerHTML = 'Por favor, indique desde cuantos metros desea buscar';
-      errorMetros.style.backgroundColor = 'red';
-      errorMetros.style.borderRadius = '10px';
-      errorMetros.style.padding = '2%';
+      estiloMetrosError();
     } else if (hasta.value == '' && cuartos.value != '') {
       errorMetros.innerHTML = 'Por favor, indique hasta cuantos metros desea buscar';
-      errorMetros.style.backgroundColor = 'red';
-      errorMetros.style.borderRadius = '10px';
-      errorMetros.style.padding = '2%';
+      estiloMetrosError();
     } else
     // se evalúa si el primer valor del metraje (desde) es mayor o igual que el segundo (hasta)
     if (Number(desde.value) >= Number(hasta.value)) {
       errorMetros.innerHTML = "La longitud no puede ser menor que la del inicio";
-      errorMetros.style.backgroundColor = 'red';
-      errorMetros.style.marginTop = '10%';
-      errorMetros.style.padding = '2%';
-      errorMetros.style.borderRadius = '10px';
+      estiloMetrosError();
     } else
     // si todo está bien, se compara la información ingresada, con el contenido
     // y se dibujan las tarjetas respectivas
     // en este caso, el número de cuartos ingresados, se considera como valor mínimo
     if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
-      // se limpian los mensajes de advertencias y errores
-      errorCuartos.style.backgroundColor = '';
-      errorMetros.style.backgroundColor = '';
-      errorMetros.innerHTML = '';
-      errorCuartos.innerHTML = '';
+      limpiarErrorCuartos();
+      limpiarErrorMetros();
       // plantilla para la construcción de tarjetas a incluir en Propiedades
       html += `
       <div class="propiedad">
@@ -134,3 +126,30 @@ boton.addEventListener('click', function() {
     propiedades.innerHTML = html;
   }
 });
+
+// se declaran las funciones que limpian mensajes de error
+function limpiarErrorCuartos() {
+  errorCuartos.innerHTML = '';
+  errorCuartos.style.backgroundColor = '';
+};
+
+function limpiarErrorMetros() {
+  errorMetros.innerHTML = '';
+  errorMetros.style.backgroundColor = '';
+};
+
+// se declaran las funciones que dan estilos a mensajes de error
+function estiloCuartosError() {
+  errorCuartos.innerHTML = 'El número de cuartos ha de ser al menos 1';
+  errorCuartos.style.backgroundColor = 'red';
+  errorCuartos.style.marginTop = '10%';
+  errorCuartos.style.padding = '2%';
+  errorCuartos.style.borderRadius = '10px';
+};
+
+function estiloMetrosError() {
+  errorMetros.style.backgroundColor = 'red';
+  errorMetros.style.marginTop = '10%';
+  errorMetros.style.padding = '2%';
+  errorMetros.style.borderRadius = '10px';
+}
