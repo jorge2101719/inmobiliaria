@@ -57,6 +57,7 @@ let desde = document.querySelector('#desde');
 let hasta = document.querySelector('#hasta');
 let errorCuartos = document.querySelector('#errorCuartos');
 let errorMetros = document.querySelector('#errorMetros');
+let errorBusqueda = document.querySelector('#errorBusqueda');
 let total = document.querySelector('#total');
 let propiedades = document.querySelector('.propiedades');
 // se declara un contador para el total
@@ -78,25 +79,18 @@ boton.addEventListener('click', function() {
       limpiarErrorCuartos();
       errorMetros.innerHTML = 'Por favor, indique desde y hasta cuantos metros desea hacer la búsqueda';
       estiloMetrosError();
-    } else if (cuartos.value == '' &&  desde.value == '') {
-      estiloCuartosError();
-      desde.innerHTML = 'Por favor, indique desde cuantos metros desea buscar';
-      estiloMetrosError();
-    } else if (cuartos.value == '' && hasta.value == '') {
-      estiloCuartosError();
-      hasta.innerHTML = 'Por favor, indique hasta cuantos metros desea buscar';
-      estiloMetrosError();
-    } else if (desde.value == '' && cuartos.value != '') {
+    } else if (desde.value == '' && hasta.value != '') {
       limpiarErrorCuartos();
-      errorMetros.innerHTML = 'Por favor, indique desde cuantos metros desea buscar';
+      errorMetros.innerHTML = 'Por favor, indique DESDE cuantos metros desea buscar';
       estiloMetrosError();
-    } else if (hasta.value == '' && cuartos.value != '') {
-      errorMetros.innerHTML = 'Por favor, indique hasta cuantos metros desea buscar';
+    } else if (desde.value != '' &&  hasta.value == '') {
+      limpiarErrorMetros();
+      errorMetros.innerHTML = 'Por favor, indique HASTA cuantos metros desea buscar';
       estiloMetrosError();
     } else
     // se evalúa si el primer valor del metraje (desde) es mayor o igual que el segundo (hasta)
     if (Number(desde.value) >= Number(hasta.value)) {
-      errorMetros.innerHTML = "La longitud no puede ser menor que la del inicio";
+      errorMetros.innerHTML = "El primer valor de METROS CUADRADOS, debe ser menor que el segundo";
       estiloMetrosError();
     } else
     // si todo está bien, se compara la información ingresada, con el contenido
@@ -121,6 +115,8 @@ boton.addEventListener('click', function() {
       </div>
       `;
       contador++;
+    } else {
+      errorBusqueda.innerHTML = 'No hay datos que coincidan con la información proporcionada'
     }
     total.innerHTML = contador;
     propiedades.innerHTML = html;
@@ -140,7 +136,7 @@ function limpiarErrorMetros() {
 
 // se declaran las funciones que dan estilos a mensajes de error
 function estiloCuartosError() {
-  errorCuartos.innerHTML = 'El número de cuartos ha de ser al menos 1';
+  errorCuartos.innerHTML = 'El número de cuartos debe ser de al menos 1';
   errorCuartos.style.backgroundColor = 'red';
   errorCuartos.style.marginTop = '10%';
   errorCuartos.style.padding = '2%';
