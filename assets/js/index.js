@@ -50,7 +50,7 @@ const propiedadesJSON = [
     }
   ];
   
-
+// se declaran los elementos que rescatan los elementos del DOM
 let boton = document.querySelector('button');
 let cuartos = document.querySelector('#cuartos');
 let desde = document.querySelector('#desde');
@@ -59,8 +59,10 @@ let errorCuartos = document.querySelector('#errorCuartos');
 let errorMetros = document.querySelector('#errorMetros');
 let total = document.querySelector('#total');
 let propiedades = document.querySelector('.propiedades');
-// let imagen = document.querySelector('.img');
+// se declara un contador para el total
 let contador = 0;
+// se declara la variable html que contendrá las tarjetas que cumplan con las condiciones pedidas
+// y que luego se traspasará al DOM
 let html = '';
 
 boton.addEventListener('click', function() {
