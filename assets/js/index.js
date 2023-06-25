@@ -78,12 +78,19 @@ boton.addEventListener('click', function() {
       errorCuartos.style.marginTop = '10%';
       errorCuartos.style.padding = '2%';
       errorCuartos.style.borderRadius = '10px';
-    } else if (desde.value == '') {
+    } else if (cuartos.value != '' && desde.value == '' && hasta.value == '') {
+      errorCuartos.innerHTML = '';
+      errorCuartos.style.backgroundColor = '';
+      errorMetros.innerHTML = 'Por favor, indique desde y hasta cuantos metros desea hacer la búsqueda';
+      errorMetros.style.backgroundColor = 'red';
+      errorMetros.style.borderRadius = '10px';
+      errorMetros.style.padding = '2%';
+    } else if (desde.value == '' && cuartos.value != '') {
       errorMetros.innerHTML = 'Por favor, indique desde cuantos metros desea buscar';
       errorMetros.style.backgroundColor = 'red';
       errorMetros.style.borderRadius = '10px';
       errorMetros.style.padding = '2%';
-    } else if (hasta.value == '') {
+    } else if (hasta.value == '' && cuartos.value != '') {
       errorMetros.innerHTML = 'Por favor, indique hasta cuantos metros desea buscar';
       errorMetros.style.backgroundColor = 'red';
       errorMetros.style.borderRadius = '10px';
