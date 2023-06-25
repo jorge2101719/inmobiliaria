@@ -78,6 +78,16 @@ boton.addEventListener('click', function() {
       errorCuartos.style.marginTop = '10%';
       errorCuartos.style.padding = '2%';
       errorCuartos.style.borderRadius = '10px';
+    } else if (desde.value == '') {
+      errorMetros.innerHTML = 'Por favor, indique desde cuantos metros desea buscar';
+      errorMetros.style.backgroundColor = 'red';
+      errorMetros.style.borderRadius = '10px';
+      errorMetros.style.padding = '2%';
+    } else if (hasta.value == '') {
+      errorMetros.innerHTML = 'Por favor, indique hasta cuantos metros desea buscar';
+      errorMetros.style.backgroundColor = 'red';
+      errorMetros.style.borderRadius = '10px';
+      errorMetros.style.padding = '2%';
     } else
     // se evalúa si el primer valor del metraje (desde) es mayor o igual que el segundo (hasta)
     if (Number(desde.value) >= Number(hasta.value)) {
