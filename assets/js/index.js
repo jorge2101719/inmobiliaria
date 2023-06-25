@@ -70,8 +70,10 @@ let html = '';
 boton.addEventListener('click', function() {
   html = '';
   for (let dato of propiedadesJSON) {
-    // comienza examinando condiciones erradas
+    // comienza examinando condiciones erradas o no satisfechas,
+    // advirtiendo con mensajes correspondientes en cada caso
     if (cuartos.value == '') {
+      limpiarErrorMetros();
       estiloCuartosError();
     } else if (cuartos.value != '' && desde.value == '' && hasta.value == '') {
       limpiarErrorCuartos();
@@ -91,10 +93,23 @@ boton.addEventListener('click', function() {
       limpiarErrorCuartos();
       errorMetros.innerHTML = "El primer valor de METROS CUADRADOS, debe ser menor que el segundo";
       estiloMetrosError();
-    } else
+    }
+  }
+
+  // En la eventualidad de que los campos tengan todas las condiciones pedidas,
+  // pero no satisfagan las ofertas, se mostrará un mensaje de advertencia
+  for(let dato of propiedadesJSON) {
+    if (Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) < Number(cuartos.value) ) {
+      errorMetros.innerHTML = 'No hay coincidencias';
+      estiloMetrosError();
+    } else {
+      limpiarErrorMetros();
+    }
+  }
     // si todo está bien, se compara la información ingresada, con el contenido
     // y se dibujan las tarjetas respectivas
     // en este caso, el número de cuartos ingresados, se considera como valor mínimo
+    for(let dato of propiedadesJSON) {
     if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
       limpiarErrorCuartos();
       limpiarErrorMetros();
