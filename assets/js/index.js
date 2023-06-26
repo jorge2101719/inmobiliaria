@@ -70,41 +70,20 @@ let html = '';
 boton.addEventListener('click', function() {
   html = '';
 
-  // Este ciclo for comienza examinando las principales condiciones erradas o no satisfechas,
-  // advirtiendo con mensajes correspondientes en cada caso
-  for (let dato of propiedadesJSON) {
-    if (cuartos.value == '') {
-      limpiarErrorMetros();
-      estiloCuartosError();
-    } else if (cuartos.value != '' && desde.value == '' && hasta.value == '') {
-      limpiarErrorCuartos();
-      errorMetros.innerHTML = 'Por favor, indique DESDE y HASTA cuantos metros desea hacer la búsqueda';
-      estiloMetrosError();
-    } else if (desde.value == '' && hasta.value != '') {
-      limpiarErrorCuartos();
-      errorMetros.innerHTML = 'Por favor, indique DESDE cuantos metros desea buscar';
-      estiloMetrosError();
-    } else if (desde.value != '' &&  hasta.value == '') {
-      limpiarErrorMetros();
-      errorMetros.innerHTML = 'Por favor, indique HASTA cuantos metros desea buscar';
-      estiloMetrosError();
-    } else
-    // se evalúa si el primer valor del metraje (desde) es mayor o igual que el segundo (hasta)
-    if (Number(desde.value) >= Number(hasta.value)) {
-      limpiarErrorCuartos();
-      errorMetros.innerHTML = "El primer valor de METROS CUADRADOS, debe ser menor que el segundo";
-      estiloMetrosError();
-    } else
-    // En la eventualidad de que los campos tengan todas las condiciones pedidas,
-    // pero no satisfagan las ofertas, se mostrará un mensaje de advertencia
-    if (Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) < Number(cuartos.value) ) {
-      errorMetros.innerHTML = 'No hay coincidencias';
-      estiloMetrosError();
-    } else {
-      limpiarErrorMetros();
-    }
+  // Se implementa una lógica en caso de que algún campo esté vacío, o bien no cumpla
+  // un requerimiento lógico básico como, por ejemplo el primer campo de metros,
+  // no puede ser mayor o igual al segundo, o que el número de cuartos sea 0
+  if (cuartos.value == '') {
+    alert('El campo CUARTOS, está vacío');
+  } else if (cuartos.value != '' && desde.value == '' && hasta.value == '') {
+    alert('Por favor, indique DESDE y HASTA cuantos metros desea hacer la búsqueda');
+  } else if (desde.value == '' && hasta.value != '') {
+    alert('Por favor, indique DESDE cuantos metros desea buscar')
+  } else if (desde.value != '' &&  hasta.value == '') {
+    alert('Por favor, indique HASTA cuantos metros desea buscar');
   }
 
+    
   // si todo está bien, se compara la información ingresada, con el contenido
   // y se dibujan las tarjetas respectivas
   // en este caso, el número de cuartos ingresados se considera como VALOR MÍNIMO
@@ -135,30 +114,3 @@ boton.addEventListener('click', function() {
   // al salir del ciclo for, volvemos el contador a 0, para que no acumule los Click dados.
   contador = 0;
 });
-
-// se declaran las funciones que limpian mensajes de error
-function limpiarErrorCuartos() {
-  errorCuartos.innerHTML = '';
-  errorCuartos.style.backgroundColor = '';
-};
-
-function limpiarErrorMetros() {
-  errorMetros.innerHTML = '';
-  errorMetros.style.backgroundColor = '';
-};
-
-// se declaran las funciones que dan estilos a mensajes de error
-function estiloCuartosError() {
-  errorCuartos.innerHTML = 'El número de cuartos debe ser de al menos 1';
-  errorCuartos.style.backgroundColor = 'red';
-  errorCuartos.style.marginTop = '10%';
-  errorCuartos.style.padding = '2%';
-  errorCuartos.style.borderRadius = '10px';
-};
-
-function estiloMetrosError() {
-  errorMetros.style.backgroundColor = 'red';
-  errorMetros.style.marginTop = '10%';
-  errorMetros.style.padding = '2%';
-  errorMetros.style.borderRadius = '10px';
-}
