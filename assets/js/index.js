@@ -85,7 +85,7 @@ boton.addEventListener('click', function() {
     alert('El valor del camplo DESDE, debe ser menor al de HASTA');
   } 
   
-  coincidencias();
+  // coincidencias();
 
   // si todo está bien, se compara la información ingresada, con el contenido
   // y se dibujan las tarjetas respectivas
@@ -116,18 +116,19 @@ boton.addEventListener('click', function() {
   contador = 0;
 });
 
-function coincidencias() {
-  let empate = 0;
-  
-  for(let dato of propiedadesJSON) {
-    if(Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) != Number(cuartos.value)) {
-      console.log('dentro del for', empate); // se incluye acción no visible para el usuario
-    } else {
-      empate++;
-    }
-  }
+// function coincidencias() {
+//   let empate = 0;
 
-  if(empate == 0) {
-    return alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
-  }
-}
+//   for(let dato of propiedadesJSON) {
+//     if(Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) != Number(cuartos.value)) {
+//       console.log('dentro del for', empate); // se incluye acción no visible para el usuario
+//     } else {
+//       empate++;
+//     }
+//   }
+
+//   if(empate == 0) {
+//     console.log('no hay');
+//     alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
+//   }
+// }
