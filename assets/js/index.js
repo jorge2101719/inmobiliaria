@@ -107,7 +107,7 @@ boton.addEventListener('click', function() {
 
   // si todo está bien, se compara la información ingresada, con el contenido
   // y se dibujan las tarjetas respectivas
-  // en este caso, el número de cuartos ingresados, se considera como valor mínimo
+  // en este caso, el número de cuartos ingresados se considera como VALOR MÍNIMO
   for(let dato of propiedadesJSON) {
     if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
       limpiarErrorCuartos();
