@@ -114,21 +114,24 @@ boton.addEventListener('click', function() {
   }
   // al salir del ciclo for, volvemos el contador a 0, para que no acumule los Click dados.
   contador = 0;
+  coincidencias();
 });
 
-// function coincidencias() {
-//   let empate = 0;
+function coincidencias() {
+  let empate = 0;
 
-//   for(let dato of propiedadesJSON) {
-//     if(Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) != Number(cuartos.value)) {
-//       console.log('dentro del for', empate); // se incluye acción no visible para el usuario
-//     } else {
-//       empate++;
-//     }
-//   }
+  for(let dato of propiedadesJSON) {
+    if(Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) != Number(cuartos.value)) {
+      console.log('dentro del for', empate); // se incluye acción no visible para el usuario
+    } else {
+      empate++;
+    }
+  }
 
-//   if(empate == 0) {
-//     console.log('no hay');
-//     alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
-//   }
-// }
+  if(empate == 0) {
+    console.log('no hay');
+    alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
+  }
+}
+
+//coincidencias();
