@@ -118,19 +118,16 @@ boton.addEventListener('click', function() {
 
 function coincidencias() {
   let empate = 0;
-  console.log(Number(cuartos.value))
-  console.log('valor del contador antes del for ',contador);
-  console.log('antes del for', empate);
+  
   for(let dato of propiedadesJSON) {
     if(Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) != Number(cuartos.value)) {
-      console.log('dentro del for', empate);
+      console.log('dentro del for', empate); // se incluye acción no visible para el usuario
     } else {
       empate++;
     }
   }
 
   if(empate == 0) {
-    console.log('después del for', empate);
-    return alert('No hay coincidencias');
+    return alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
   }
 }
