@@ -81,16 +81,17 @@ boton.addEventListener('click', function() {
     alert('Por favor, indique DESDE cuantos metros desea buscar')
   } else if (desde.value != '' &&  hasta.value == '') {
     alert('Por favor, indique HASTA cuantos metros desea buscar');
-  }
+  } else if (Number(desde.value) >= Number(hasta.value)) {
+    alert('El valor del camplo DESDE, debe ser menor al de HASTA');
+  } 
+  
+  coincidencias();
 
-    
   // si todo está bien, se compara la información ingresada, con el contenido
   // y se dibujan las tarjetas respectivas
   // en este caso, el número de cuartos ingresados se considera como VALOR MÍNIMO
   for(let dato of propiedadesJSON) {
     if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
-      limpiarErrorCuartos();
-      limpiarErrorMetros();
       // plantilla para la construcción de tarjetas a incluir en Propiedades
       html += `
       <div class="propiedad">
@@ -114,3 +115,22 @@ boton.addEventListener('click', function() {
   // al salir del ciclo for, volvemos el contador a 0, para que no acumule los Click dados.
   contador = 0;
 });
+
+function coincidencias() {
+  let empate = 0;
+  console.log(Number(cuartos.value))
+  console.log('valor del contador antes del for ',contador);
+  console.log('antes del for', empate);
+  for(let dato of propiedadesJSON) {
+    if(Number(dato.m) < Number(desde.value) || Number(dato.m) > Number(hasta.value) || Number(dato.rooms) != Number(cuartos.value)) {
+      console.log('dentro del for', empate);
+    } else {
+      empate++;
+    }
+  }
+
+  if(empate == 0) {
+    console.log('después del for', empate);
+    return alert('No hay coincidencias');
+  }
+}
