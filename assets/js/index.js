@@ -78,7 +78,7 @@ boton.addEventListener('click', function() {
       estiloCuartosError();
     } else if (cuartos.value != '' && desde.value == '' && hasta.value == '') {
       limpiarErrorCuartos();
-      errorMetros.innerHTML = 'Por favor, indique desde y hasta cuantos metros desea hacer la búsqueda';
+      errorMetros.innerHTML = 'Por favor, indique DESDE y HASTA cuantos metros desea hacer la búsqueda';
       estiloMetrosError();
     } else if (desde.value == '' && hasta.value != '') {
       limpiarErrorCuartos();
