@@ -83,12 +83,21 @@ boton.addEventListener('click', function() {
     alert('Por favor, indique HASTA cuantos metros desea buscar');
   } else if (Number(desde.value) >= Number(hasta.value)) {
     alert('El valor del camplo DESDE, debe ser menor al de HASTA');
-  } else if (Number(cuartos.value) < 0 ) {
+  } else
+  // Además de un mensaje de advetencia, se limpian los campos con valores negativos.
+  // se evita la limpieza total, porque un potencial usuario podría seguir haciendo
+  // búsquedas con los restantes valores. Por ejemplo, podría buscar entre 10 a 500
+  // metros cuadrados y varias apenas el número de habitaciones, y me parece que sería
+  // algo molesto estar llenando todos los campos, cuando apenas necesita modificar uno
+  if (Number(cuartos.value) < 0 ) {
     alert('Cuidado, el campo CUARTOS tiene un valor negativo');
+    cuartos.value = '';
   } else if (Number(desde.value) < 0) {
     alert('Cuidado, el campo DESDE tiene un valor negativo');
+    desde.value = '';
   } else if (Number(hasta.value) < 0) {
     alert('Cuidado, el campo HASTA tiene un valor negativo');
+    hasta.value = '';
    } else {
     console.log('Todo parece estar bien');// este mensaje es solo auxiliar al código
    }
@@ -141,5 +150,3 @@ function coincidencias() {
     alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
   }
 }
-
-//coincidencias();
