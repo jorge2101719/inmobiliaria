@@ -83,7 +83,14 @@ boton.addEventListener('click', function() {
     alert('Por favor, indique HASTA cuantos metros desea buscar');
   } else if (Number(desde.value) >= Number(hasta.value)) {
     alert('El valor del camplo DESDE, debe ser menor al de HASTA');
-  } 
+  } else if (Number(cuartos.value) < 0 ) {
+    alert('Cuidado, el campo CUARTOS tiene un valor negativo');
+  } else if (Number(desde.value) < 0) {
+    alert('Cuidado, el campo DESDE tiene un valor negativo');
+  } else if (Number(hasta.value) < 0) {
+    alert('Cuidado, el campo HASTA tiene un valor negativo');
+   } else {   // console.log('Todo parece estar bien');// este mensaje no se muestra al usuario
+   }
   
   // coincidencias();
 
@@ -91,7 +98,7 @@ boton.addEventListener('click', function() {
   // y se dibujan las tarjetas respectivas
   // en este caso, el número de cuartos ingresados se considera como VALOR MÍNIMO
   for(let dato of propiedadesJSON) {
-    if (Number(dato.rooms) >= Number(cuartos.value) && Number(dato.m) >= Number(desde.value) && Number(dato.m) <= Number(hasta.value) ) {
+    if (Number(dato.rooms) >= Number(cuartos.value) && Number(cuartos.value) > 0 && Number(dato.m) >= Number(desde.value) && Number(desde.value) > 0 && Number(dato.m) <= Number(hasta.value) && Number(hasta.value) > 0 ) {
       // plantilla para la construcción de tarjetas a incluir en Propiedades
       html += `
       <div class="propiedad">
