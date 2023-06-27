@@ -49,7 +49,8 @@ const propiedadesJSON = [
       m: 500
     }
   ];
-  
+
+
 // se declaran los elementos que rescatan los elementos del DOM
 let boton = document.querySelector('button');
 let cuartos = document.querySelector('#cuartos');
@@ -146,7 +147,6 @@ function coincidencias() {
   }
 
   if(empate == 0) {
-    console.log('no hay');
     alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
   }
 }
