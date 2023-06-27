@@ -90,7 +90,7 @@ boton.addEventListener('click', function() {
   } else if (Number(hasta.value) < 0) {
     alert('Cuidado, el campo HASTA tiene un valor negativo');
    } else {
-    console.log('Todo parece estar bien');// este mensaje no se muestra al usuario
+    console.log('Todo parece estar bien');// este mensaje es solo auxiliar al código
    }
   
   // coincidencias();
