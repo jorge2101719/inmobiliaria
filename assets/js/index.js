@@ -168,6 +168,8 @@ function coincidencias() {
 
   if(empate == 0) {
     alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
+    propiedades.innerHTML = '';
+    total.innerHTML = 0;
   } else {
     console.log('nada')
   }
