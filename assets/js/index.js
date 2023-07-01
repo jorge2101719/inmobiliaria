@@ -66,6 +66,26 @@ let contador = 0;
 // y que luego se traspasará al DOM
 let html = '';
 
+
+for (let dato of propiedadesJSON) {
+  html += `
+    <div class="propiedad">
+      <div class="img"><img src="${dato.src}"></div>
+      <section>
+          <h5>${dato.name}</h5>
+          <div class="d-flex justify-content-between">
+              <p>Cuartos: ${dato.rooms}</p>
+              <p>Metros: ${dato.m}</p>
+          </div>
+          <p class="my-3">Mansión gigante</p>
+          <button class="btn btn-info">Ver más</button>
+      </section>
+    </div>
+    `;
+  total.innerHTML = 6;
+  propiedades.innerHTML = html;
+}
+
 // se usa un Oídor para rescatar el evento Click y se define una función anónima
 // que contiene las instrucciones a realizar
 boton.addEventListener('click', function() {
@@ -148,5 +168,7 @@ function coincidencias() {
 
   if(empate == 0) {
     alert('No se encontraron coincidencias. Modifique la información ingresada e inténtelo otra vez');
+  } else {
+    console.log('nada')
   }
 }
